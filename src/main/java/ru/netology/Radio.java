@@ -3,47 +3,80 @@ package ru.netology;
 public class Radio {
     private int radioStation;
     private int currentVolume;
+    private int numberOfRadioStationsInfo = 10;
+
+    public Radio(int radioStation, int currentVolume, int numberOfRadioStationsInfo) {
+        this.radioStation = radioStation;
+        this.currentVolume = currentVolume;
+        this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
+    }
+
+    public Radio() {
+    }
+
+    public Radio(int radioStation, int currentVolume) {
+        this.radioStation = radioStation;
+        this.currentVolume = currentVolume;
+    }
 
     public int getRadioStation() {
         return radioStation;
     }
 
-    public void setRadioStation(int radioStation) {
+    public void setRadioStation() {
         if (radioStation < 0) {
-            return;
+            radioStation = 0;
         }
-        if (radioStation > 9) {
-            return;
+        if (radioStation > numberOfRadioStationsInfo - 1) {
+            radioStation = numberOfRadioStationsInfo - 1;
         }
-        this.radioStation = radioStation;
+        return;
     }
-    public void setNextRadioStation () {
+
+    public void setNextRadioStation() {
         radioStation++;
-        if (radioStation > 9) {
+        if (radioStation > numberOfRadioStationsInfo - 1) {
             radioStation = 0;
         }
     }
-    public void setPrevRadioStation () {
+
+    public void setPrevRadioStation() {
         radioStation--;
         if (radioStation < 0) {
-            radioStation = 9;
+            radioStation = numberOfRadioStationsInfo - 1;
         }
     }
+
     public int getCurrentVolume() {
         return currentVolume;
     }
-    public void setCurrentVolume(int currentVolume) {
+
+    public int setCurrentVolume() {
         this.currentVolume = currentVolume;
+        return currentVolume;
     }
+
     public void setIncreaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < numberOfRadioStationsInfo) {
             currentVolume++;
         }
     }
+
     public void setDecreaseVolume() {
         if (currentVolume > 1) {
             currentVolume--;
         }
+    }
+
+    public int getNumberOfRadioStationsInfo() {
+        return numberOfRadioStationsInfo;
+    }
+
+    public void setNumberOfRadioStationsInfo() {
+        if (numberOfRadioStationsInfo < 0) {
+            numberOfRadioStationsInfo = 0;
+        }
+        this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
     }
 }
 
