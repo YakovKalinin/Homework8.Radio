@@ -23,12 +23,12 @@ public class Radio {
         return radioStation;
     }
 
-    public void setRadioStation() {
+    public void setRadioStation(int radioStation) {
         if (radioStation < 0) {
-            radioStation = 0;
+            return;
         }
         if (radioStation > numberOfRadioStationsInfo - 1) {
-            radioStation = numberOfRadioStationsInfo - 1;
+            return;
         }
         return;
     }
@@ -51,30 +51,41 @@ public class Radio {
         return currentVolume;
     }
 
-    public int setCurrentVolume() {
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
+        }
+        if (currentVolume > 99) {
+            return;
+        }
         this.currentVolume = currentVolume;
-        return currentVolume;
     }
 
     public void setIncreaseVolume() {
-        if (currentVolume < numberOfRadioStationsInfo) {
+
+        if (currentVolume < 98) {
             currentVolume++;
         }
+        return;
     }
 
     public void setDecreaseVolume() {
         if (currentVolume > 1) {
             currentVolume--;
         }
+        return;
     }
 
     public int getNumberOfRadioStationsInfo() {
         return numberOfRadioStationsInfo;
     }
 
-    public void setNumberOfRadioStationsInfo() {
+    public void setNumberOfRadioStationsInfo(int numberOfRadioStationsInfo) {
         if (numberOfRadioStationsInfo < 0) {
-            numberOfRadioStationsInfo = 0;
+            return;
+        }
+        if (numberOfRadioStationsInfo > 999) {
+            return;
         }
         this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
     }

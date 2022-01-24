@@ -13,15 +13,15 @@ class RadioTest {
     }
     @Test
     public void setRadioStationMin() {
-        Radio radio = new Radio(-9, 20);
-        radio.setRadioStation();
+        Radio radio = new Radio();
+        radio.setRadioStation (0);
         assertEquals(0, radio.getRadioStation());
     }
     @Test
     public void setRadioStationOverMax() {
-        Radio radio = new Radio(11, 20, 10);
-        radio.setRadioStation();
-        assertEquals(9, radio.getRadioStation());
+        Radio radio = new Radio();
+        radio.setRadioStation (20);
+        assertEquals(0, radio.getRadioStation());
     }
     @Test
     public void setRadioStationZero() {
@@ -29,10 +29,16 @@ class RadioTest {
         assertEquals(0, radio.getRadioStation());
     }
     @Test
+    public void setRadioStationUnderZero() {
+        Radio radio = new Radio();
+        radio.setRadioStation(-9);
+        assertEquals(0, radio.getRadioStation());
+    }
+    @Test
     public void setRadioStationTen() {
-        Radio radio = new Radio(10, 20, 10);
-        radio.setRadioStation();
-        assertEquals(9, radio.getRadioStation());
+        Radio radio = new Radio();
+        radio.setRadioStation (10);
+        assertEquals(0, radio.getRadioStation());
     }
     @Test
     public void setNextRadioStationNum9() {
@@ -65,12 +71,6 @@ class RadioTest {
         assertEquals(5, radio.getRadioStation());
     }
     @Test
-    public void setIncreaseVolumeAfter10() {
-        Radio radio = new Radio(0, 10, 10);
-        radio.setIncreaseVolume();
-        assertEquals(10, radio.getCurrentVolume());
-    }
-    @Test
     public void setIncreaseVolume() {
         Radio radio = new Radio(1, 5, 10);
         radio.setIncreaseVolume();
@@ -84,15 +84,35 @@ class RadioTest {
     }
     @Test
     public void setDecreaseVolumeUnder0() {
-        Radio radio = new Radio(0, 0, 10);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
         radio.setDecreaseVolume();
         assertEquals(0, radio.getCurrentVolume());
     }
     @Test
+    public void setIncreaseVolumeUnder0() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(99);
+        radio.setIncreaseVolume();
+        assertEquals(99, radio.getCurrentVolume());
+    }
+    @Test
+    public void setCurrentVolumeOver99() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(100);
+        assertEquals(0, radio.getCurrentVolume());
+    }
+    @Test
+    public void setCurrentVolumeUnder0() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(-9);
+        assertEquals(0, radio.getCurrentVolume());
+    }
+    @Test
     public void setCurrentVolume() {
-        Radio radio = new Radio(5, 5);
-        radio.setCurrentVolume();
-        assertEquals(5, radio.setCurrentVolume());
+        Radio radio = new Radio();
+        radio.setCurrentVolume(40);
+        assertEquals(40, radio.getCurrentVolume());
     }
     @Test
     public void getRadioConstructor() {
@@ -103,13 +123,29 @@ class RadioTest {
     @Test
     public void setNumberOfRadioStationsInfo() {
         Radio radio = new Radio();
-        radio.setNumberOfRadioStationsInfo();
         assertEquals(10, radio.getNumberOfRadioStationsInfo());
     }
     @Test
+    public void setNumberOfRadioStationsInfo500() {
+        Radio radio = new Radio();
+        radio.setNumberOfRadioStationsInfo(500);
+        assertEquals(500, radio.getNumberOfRadioStationsInfo());
+    }
+    @Test
     public void setNumberOfRadioStationsUnderZero() {
-        Radio radio = new Radio(4, 12, -9);
-        radio.setNumberOfRadioStationsInfo();
+        Radio radio = new Radio();
+        radio.setNumberOfRadioStationsInfo (-10);
+        assertEquals(10, radio.getNumberOfRadioStationsInfo());
+    }
+    @Test
+    public void setNumberOfRadioStationsZero() {
+        Radio radio = new Radio(4, 12, 0);
         assertEquals(0, radio.getNumberOfRadioStationsInfo());
+    }
+    @Test
+    public void setNumberOfRadioStationsUnderLimit() {
+        Radio radio = new Radio();
+        radio.setNumberOfRadioStationsInfo (1000);
+        assertEquals(10, radio.getNumberOfRadioStationsInfo());
     }
 }
