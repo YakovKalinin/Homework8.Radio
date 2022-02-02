@@ -5,6 +5,10 @@ public class Radio {
     private int currentVolume;
     private int numberOfRadioStationsInfo = 10;
 
+    public Radio(int numberOfRadioStationsInfo) {
+        this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
+    }
+
     public Radio(int radioStation, int currentVolume, int numberOfRadioStationsInfo) {
         this.radioStation = radioStation;
         this.currentVolume = currentVolume;
