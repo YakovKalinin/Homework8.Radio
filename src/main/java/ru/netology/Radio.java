@@ -4,10 +4,29 @@ public class Radio {
     private int radioStation;
     private int currentVolume;
     private int numberOfRadioStationsInfo = 10;
-    private int maxRadioStation = numberOfRadioStationsInfo - 1;
+    private int maxRadioStation;
+
+
 
     public Radio(int numberOfRadioStationsInfo) {
+        if (numberOfRadioStationsInfo <= 0) {
+            numberOfRadioStationsInfo = 10;
+        }
+        if (numberOfRadioStationsInfo > 999) {
+            numberOfRadioStationsInfo = 10;
+        }
         this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
+    }
+
+    public int getMaxRadioStation() {
+        if (maxRadioStation < 0) {
+            maxRadioStation = 0;
+        }
+        return maxRadioStation = numberOfRadioStationsInfo - 1;
+    }
+
+    public void setMaxRadioStation(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
     }
 
     public Radio(int radioStation, int currentVolume, int numberOfRadioStationsInfo) {
@@ -32,7 +51,7 @@ public class Radio {
         if (radioStation < 0) {
             return;
         }
-        if (radioStation > maxRadioStation) {
+        if (radioStation > numberOfRadioStationsInfo - 1) {
             return;
         }
         return;
@@ -40,7 +59,7 @@ public class Radio {
 
     public void setNextRadioStation() {
         radioStation++;
-        if (radioStation > maxRadioStation) {
+        if (radioStation > numberOfRadioStationsInfo - 1) {
             radioStation = 0;
         }
     }
@@ -48,7 +67,7 @@ public class Radio {
     public void setPrevRadioStation() {
         radioStation--;
         if (radioStation < 0) {
-            radioStation = maxRadioStation;
+            radioStation = numberOfRadioStationsInfo - 1;
         }
     }
 
@@ -79,20 +98,6 @@ public class Radio {
             currentVolume--;
         }
         return;
-    }
-
-    public int getNumberOfRadioStationsInfo() {
-        return numberOfRadioStationsInfo;
-    }
-
-    public void setNumberOfRadioStationsInfo(int numberOfRadioStationsInfo) {
-        if (numberOfRadioStationsInfo < 0) {
-            return;
-        }
-        if (numberOfRadioStationsInfo > 999) {
-            return;
-        }
-        this.numberOfRadioStationsInfo = numberOfRadioStationsInfo;
     }
 }
 

@@ -42,7 +42,7 @@ class RadioTest {
     }
     @Test
     public void setNextRadioStationNum9() {
-        Radio radio = new Radio(8, 20);
+        Radio radio = new Radio(8, 20, 10);
         radio.setNextRadioStation();
         assertEquals(9, radio.getRadioStation());
     }
@@ -54,7 +54,7 @@ class RadioTest {
     }
     @Test
     public void setPrevRadioStationNum0() {
-        Radio radio = new Radio(0, 20);
+        Radio radio = new Radio(0, 20, 10);
         radio.setPrevRadioStation();
         assertEquals(9, radio.getRadioStation());
     }
@@ -115,37 +115,28 @@ class RadioTest {
         assertEquals(40, radio.getCurrentVolume());
     }
     @Test
-    public void getRadioConstructor() {
-        Radio radio = new Radio();
-        radio.getNumberOfRadioStationsInfo();
-        assertEquals(10, radio.getNumberOfRadioStationsInfo());
-    }
-    @Test
     public void setNumberOfRadioStationsInfo() {
-        Radio radio = new Radio();
-        assertEquals(10, radio.getNumberOfRadioStationsInfo());
+        Radio radio = new Radio(10);
+        assertEquals(9, radio.getMaxRadioStation());
     }
     @Test
     public void setNumberOfRadioStationsInfo500() {
-        Radio radio = new Radio();
-        radio.setNumberOfRadioStationsInfo(500);
-        assertEquals(500, radio.getNumberOfRadioStationsInfo());
+        Radio radio = new Radio(500);
+        assertEquals(499, radio.getMaxRadioStation());
     }
     @Test
     public void setNumberOfRadioStationsUnderZero() {
-        Radio radio = new Radio();
-        radio.setNumberOfRadioStationsInfo (-10);
-        assertEquals(10, radio.getNumberOfRadioStationsInfo());
+        Radio radio = new Radio(-10);
+        assertEquals(9, radio.getMaxRadioStation());
     }
     @Test
     public void setNumberOfRadioStationsZero() {
-        Radio radio = new Radio(4, 12, 0);
-        assertEquals(0, radio.getNumberOfRadioStationsInfo());
+        Radio radio = new Radio(0);
+        assertEquals(9, radio.getMaxRadioStation());
     }
     @Test
     public void setNumberOfRadioStationsUnderLimit() {
-        Radio radio = new Radio();
-        radio.setNumberOfRadioStationsInfo (1000);
-        assertEquals(10, radio.getNumberOfRadioStationsInfo());
+        Radio radio = new Radio(1000);
+        assertEquals(9, radio.getMaxRadioStation());
     }
 }
